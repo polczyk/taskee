@@ -10,24 +10,6 @@ const ul = document.querySelector('ul');
 const input = document.querySelector('#taskInput');
 input.addEventListener('keypress', e => {
   if (e.code === 'Enter') {
-    if (selectedElement && selectedTask) {
-      const newTask = {name: input.value}
-      const newElement = createTaskElement(
-        newTask, selectedElement);
-
-      const ix = selectedTask.subTasks 
-        ? selectedIx + selectedTask.subTasks.length + 1
-        : selectedIx + '1';
-      taskManager.add(newTask, selectedTask, selectedElement, newElement, ix);
-
-      selectedElement.scrollIntoView();
-
-      selectedElement = null;
-      selectedTask = null;
-
-      return;
-    }
-
     const task = {name: input.value};
     tasks.push(task);
     const el = createTaskElement(task, tasks, tasks.length + '.');
