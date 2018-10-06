@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 50%;
+            margin: auto;
+            font-size: 24px;
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+        }
+
+        .collapsed {
+            margin-bottom: 1rem;
+        }
+        
+        .collapsed ul {
+            display: none;
+        }
+
+        .collapsed li {
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            border-bottom: 1px solid rgba(1, 1, 1, 0.3);
+            margin: 0;
+            padding: 15px 15px 15px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-bottom: 0.5em;
+            width: 99%;
+            padding-left: 0.5rem;
+        }
+
+        li {
+            font-size: 85%;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="taskInput">
+    <ul id="todo"></ul>
+    <script src="recurse.js" type="module"></script>
+</body>
+</html>
