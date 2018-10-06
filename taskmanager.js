@@ -1,19 +1,5 @@
 import { createTaskElement } from './recurse.js';
 
-export default {
-  add: function(task, parent, element, taskElement) {
-    if (!parent.hasOwnProperty('subTasks')) {
-      parent.subTasks = [];
-      element.appendChild(document.createElement('ul'));
-    }
-
-    parent.subTasks.push(task);
-
-    const ul = element.querySelector('ul');
-    ul.appendChild(taskElement);
-  }
-};
-
 class TaskManager {
   constructor(task, parentTask, element) {
     this.task = task;

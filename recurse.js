@@ -1,5 +1,4 @@
 import tasks from './tasks.js';
-import taskManager from './taskmanager.js';
 import {TaskManager} from './taskmanager.js';
 
 let selectedTask = tasks[0].subTasks[0].subTasks[0];
