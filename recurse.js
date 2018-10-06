@@ -30,7 +30,8 @@ input.addEventListener('keypress', e => {
     }
 
     const task = {name: input.value};
-    const el = createTaskElement(task, null, tasks.length + 1 + '.');
+    tasks.push(task);
+    const el = createTaskElement(task, tasks, tasks.length + '.');
     ul.appendChild(el);
     el.scrollIntoView();
     return;
