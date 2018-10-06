@@ -95,19 +95,7 @@ function createTaskElement(task, parent, ix) {
   p.appendChild(btnRemoveTask);
 
   li.addEventListener('click', manager.handleClick.bind(manager));
-  
-  li.addEventListener('click', e => {
-    e.stopPropagation();
-
-    if (e.target.nodeName === 'BUTTON') {
-      if (e.target.classList.contains('add')) {
-        selectedTask = task;
-        selectedElement = li;
-        selectedIx = ix;
-        input.focus();
-      }
-    }
-  })
+  li.addEventListener('keypress', manager.handleKeypress.bind(manager));
 
   const sub = recurse(task, ix);
   li.appendChild(sub);
