@@ -23,15 +23,16 @@ body {
 
 p {
   border-bottom: 1px solid rgba(1, 1, 1, 0.3);
+  border-radius: 3px;
   margin: 0;
   padding: 15px 15px 15px 0;
+  box-shadow: 0 5px 2px -3px rgba(1, 1, 1, 0.2);
 }
 
 ul {
   list-style-type: none;
   margin-bottom: 0.5em;
-  width: 99%;
-  padding-left: 0.5rem;
+  padding-left: 2rem;
 }
 
 li {
