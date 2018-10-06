@@ -83,4 +83,4 @@ class TaskManager {
   }
 }
 
-export {TaskManager};
+export default TaskManager;
