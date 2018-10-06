@@ -21,6 +21,9 @@ input.addEventListener('keypress', e => {
 
 tasks.forEach((e, ix) => {
   const li = createTaskElement(e, tasks, ix + 1 + '.');
+  if (hasSubtasks(e)) {
+    li.appendChild(recurse(e));
+  }
   ul.appendChild(li);
 });
 
@@ -33,6 +36,9 @@ function recurse(obj, ix) {
 
   obj.subTasks.forEach((task, i) => {
     const li = createTaskElement(task, obj, ix + (i + 1) + '.');
+    if (hasSubtasks(task)) {
+      li.appendChild(recurse(task));
+    }
 
     ul.appendChild(li);
   });
@@ -81,9 +87,6 @@ function createTaskElement(task, parent, ix) {
 
   li.addEventListener('click', manager.handleClick.bind(manager));
   li.addEventListener('keypress', manager.handleKeypress.bind(manager));
-
-  const sub = recurse(task, ix);
-  li.appendChild(sub);
 
   return li;
 }
