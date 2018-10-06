@@ -1,5 +1,6 @@
 import tasks from './tasks.js';
 import taskManager from './taskmanager.js';
+import {TaskManager} from './taskmanager.js';
 
 let selectedTask = tasks[0].subTasks[0].subTasks[0];
 let selectedElement = null;
@@ -37,7 +38,7 @@ input.addEventListener('keypress', e => {
 });
 
 tasks.forEach((e, ix) => {
-  const li = createTaskElement(e, null, ix + 1 + '.');
+  const li = createTaskElement(e, tasks, ix + 1 + '.');
   ul.appendChild(li);
 });
 
@@ -67,7 +68,8 @@ function hasSubtasks(obj) {
 // @returns {HTMLElement} Element containing task info.
 function createTaskElement(task, parent, ix) {
   const li = document.createElement('li');
-
+  const manager = new TaskManager(task, parent, li);
+  
   const p = document.createElement('p');
   p.innerText = ix + ' ' + task.name;
   li.appendChild(p);
@@ -91,18 +93,12 @@ function createTaskElement(task, parent, ix) {
   btnRemoveTask.classList.add('remove');
   p.appendChild(btnRemoveTask);
 
+  li.addEventListener('click', manager.handleClick.bind(manager));
+  
   li.addEventListener('click', e => {
     e.stopPropagation();
 
     if (e.target.nodeName === 'BUTTON') {
-      if (e.target.classList.contains('collapse')) {
-        taskManager.collapse(task, li, parent);
-      }
-
-      if (e.target.classList.contains('remove')) {
-        taskManager(task, parent, li);
-      }
-
       if (e.target.classList.contains('add')) {
         selectedTask = task;
         selectedElement = li;
