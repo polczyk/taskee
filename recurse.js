@@ -94,6 +94,10 @@ function createTaskElement(task, parent, ix) {
   btnRemoveTask.classList.add('remove');
   p.appendChild(btnRemoveTask);
 
+  const input = document.createElement('input');
+  input.style.display = 'none';
+  p.appendChild(input);
+
   li.addEventListener('click', manager.handleClick.bind(manager));
   li.addEventListener('keypress', manager.handleKeypress.bind(manager));
 
@@ -102,3 +106,5 @@ function createTaskElement(task, parent, ix) {
 
   return li;
 }
+
+export { createTaskElement };

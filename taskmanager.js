@@ -1,3 +1,5 @@
+import { createTaskElement } from './recurse.js';
+
 export default {
   add: function(task, parent, element, taskElement) {
     if (!parent.hasOwnProperty('subTasks')) {
@@ -21,6 +23,7 @@ class TaskManager {
 
   addSubtask() {
     console.log('Adding subtask');
+    this.element.querySelector('input').style.display = 'initial';
   }
 
   remove() {
@@ -65,6 +68,31 @@ class TaskManager {
         input.focus(); */
         this.addSubtask();
       }
+    }
+  }
+
+  handleKeypress(event) {
+    event.stopPropagation();
+    
+    if (event.code === 'Enter') {
+      const inputElement = this.element.querySelector('input');
+
+      if (inputElement.value.length === 0)
+        return;
+        
+      const task = {name: inputElement.value};
+      if (!this.task.subTasks) this.task.subTasks = [];
+
+      this.task.subTasks.push(task);
+
+      if (!this.element.querySelector('ul')) {
+        this.element.appendChild(document.createElement('ul'));
+      }
+
+      this.element.querySelector('ul').appendChild(createTaskElement(task, this.task, ''));
+
+      inputElement.value = '';
+      inputElement.style.display = 'none';
     }
   }
 }
