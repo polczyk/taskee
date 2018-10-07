@@ -67,28 +67,17 @@ function createTaskElement(task, parent) {
   const divRight = document.createElement('div');
   divRight.classList.add('flex-right');
 
-  const btnCollapse = document.createElement('button');
-  btnCollapse.innerHTML = '<i class="fas fa-caret-up"></i>';
-  btnCollapse.setAttribute('title', 'Hide subtasks');
-  btnCollapse.classList.add('collapse');
+  const btnCollapse = createButton('fa-caret-up', 'Hide subtasks', ['collapse']);
   divRight.appendChild(btnCollapse);
 
-  const btnAddTask = document.createElement('button');
-  btnAddTask.innerHTML = '<i class="fas fa-plus"></i>';
-  btnAddTask.setAttribute('title', 'Add new subtask');
-  btnAddTask.classList.add('add');
+  const btnAddTask = createButton('fa-plus', 'Add new subtask', ['add']);
   divRight.appendChild(btnAddTask);
 
-  const btnEditTask = document.createElement('button');
-  btnEditTask.innerHTML = '<i class="fas fa-edit"></i>';
-  btnEditTask.setAttribute('title', 'Edit this task');
+  const btnEditTask = createButton('fa-edit', 'Edit this task', ['edit']);
   divRight.appendChild(btnEditTask);
 
-  const btnRemoveTask = document.createElement('button');
-  btnRemoveTask.innerHTML = '<i class="fas fa-trash-alt"></i>';
-  btnRemoveTask.setAttribute('title', 'Remove this task');
-  btnRemoveTask.classList.add('remove');
-  divRight.appendChild(btnRemoveTask);
+  const btnRemovetask = createButton('fa-trash-alt', 'Remove this task', ['remove']);
+  divRight.appendChild(btnRemovetask);
 
   const input = document.createElement('input');
   input.style.display = 'none';
@@ -100,6 +89,17 @@ function createTaskElement(task, parent) {
   li.addEventListener('keypress', manager.handleKeypress.bind(manager));
 
   return li;
+}
+
+function createButton(icon, title, classes) {
+  const button = document.createElement('button');
+  button.innerHTML = `<i class="fas ${icon}"></i>`;
+  button.setAttribute('title', title);
+  classes.forEach(cls => {
+    button.classList.add(cls);
+  });
+
+  return button;
 }
 
 export { createTaskElement };
