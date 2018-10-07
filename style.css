@@ -36,6 +36,11 @@ body {
   font-size: 0.95rem;
 }
 
+.task-item p {
+  margin: 0;
+  padding: 3% 0 3% 4%;
+}
+
 .flex-right {
   flex: 0 0 auto;
 }
