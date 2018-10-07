@@ -15,23 +15,23 @@ input.addEventListener('keypress', e => {
   }
 });
 
-tasks.forEach((e, ix) => {
-  const li = createTaskElement(e, tasks, ix + 1 + '.');
+tasks.forEach((e) => {
+  const li = createTaskElement(e, tasks);
   if (hasSubtasks(e)) {
     li.appendChild(recurse(e));
   }
   ul.appendChild(li);
 });
 
-function recurse(obj, ix) {
+function recurse(obj) {
   if (!hasSubtasks(obj)) {
     return document.createDocumentFragment();
   }
 
   const ul = document.createElement('ul');
 
-  obj.subTasks.forEach((task, i) => {
-    const li = createTaskElement(task, obj, ix + (i + 1) + '.');
+  obj.subTasks.forEach((task) => {
+    const li = createTaskElement(task, obj);
     if (hasSubtasks(task)) {
       li.appendChild(recurse(task));
     }
@@ -48,9 +48,8 @@ function hasSubtasks(obj) {
 
 // @param task - Task object used to create the html element.
 // @param parent - Html element used to append new element.
-// @param ix - Numerical task prefix eg. 1.2.2.
 // @returns {HTMLElement} Element containing task info.
-function createTaskElement(task, parent, ix) {
+function createTaskElement(task, parent) {
   const li = document.createElement('li');
   li.classList.add('task-item');
   const manager = new TaskManager(task, parent, li);
@@ -61,7 +60,7 @@ function createTaskElement(task, parent, ix) {
   const divLeft = document.createElement('div');
   divLeft.classList.add('flex-left');
   const p = document.createElement('p');
-  p.innerText = ix + ' ' + task.name;
+  p.innerText = task.name;
   divLeft.appendChild(p);
   flexContainer.appendChild(divLeft);
 
