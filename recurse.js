@@ -52,6 +52,7 @@ function hasSubtasks(obj) {
 // @returns {HTMLElement} Element containing task info.
 function createTaskElement(task, parent, ix) {
   const li = document.createElement('li');
+  li.classList.add('task-item');
   const manager = new TaskManager(task, parent, li);
   
   const p = document.createElement('p');
