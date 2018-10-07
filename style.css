@@ -7,6 +7,9 @@ body {
   margin: auto;
   font-size: 24px;
   font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  padding: 3%;
+}
+
 #taskInput {
   display: block;
   margin: auto;
@@ -42,7 +45,8 @@ p {
 ul {
   list-style-type: none;
   margin-bottom: 0.5em;
-  padding-left: 2rem;
+  padding-right: 0.25rem;
+  padding-left: 0.75rem;
 }
 
 li {
