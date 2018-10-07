@@ -17,11 +17,31 @@ body {
   width: 80%;
 }
 
+.task-item > div {
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid rgba(1, 1, 1, 0.3);
+  border-left: 1px solid rgba(1, 1, 1, 0.3);
+  border-right: 1px solid rgba(1, 1, 1, 0.3);
+  border-top: 1px solid rgba(1, 1, 1, 0.3);
+  border-radius: 0 0 3px 0px;
+  box-shadow: 0 7px 1px -5px rgba(1, 1, 1, 0.1);
+}
+
 .task-item button {
   border: none;
   background: rgba(1, 1, 1, 0);
   cursor: pointer;
   font-size: 0.95rem;
+}
+
+.flex-right {
+  flex: 0 0 auto;
+}
+
+.flex-left {
+  flex: 1 1 100%;
 }
 
 .collapsed {
@@ -36,22 +56,9 @@ body {
   margin-bottom: 1rem;
 }
 
-p {
-  border-bottom: 1px solid rgba(1, 1, 1, 0.3);
-  border-left: 1px solid rgba(1, 1, 1, 0.3);
-  border-right: 1px solid rgba(1, 1, 1, 0.3);
-  border-top: 1px solid rgba(1, 1, 1, 0.3);
-
-  border-radius: 0 0 3px 0px;
-  margin: 0;
-  padding: 10px 10px 10px 0;
-  box-shadow: 0 7px 1px -5px rgba(1, 1, 1, 0.1);
-}
-
 ul {
   list-style-type: none;
   margin-bottom: 0.5em;
-  padding-right: 0.25rem;
   padding-left: 0.75rem;
 }
 

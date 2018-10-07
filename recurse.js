@@ -55,32 +55,43 @@ function createTaskElement(task, parent, ix) {
   li.classList.add('task-item');
   const manager = new TaskManager(task, parent, li);
   
+  const flexContainer = document.createElement('div');
+  li.appendChild(flexContainer);
+
+  const divLeft = document.createElement('div');
+  divLeft.classList.add('flex-left');
   const p = document.createElement('p');
   p.innerText = ix + ' ' + task.name;
-  li.appendChild(p);
+  divLeft.appendChild(p);
+  flexContainer.appendChild(divLeft);
+
+  const divRight = document.createElement('div');
+  divRight.classList.add('flex-right');
 
   const btnCollapse = document.createElement('button');
   btnCollapse.innerHTML = '<i class="fas fa-caret-up"></i>';
   btnCollapse.classList.add('collapse');
-  p.appendChild(btnCollapse);
+  divRight.appendChild(btnCollapse);
 
   const btnAddTask = document.createElement('button');
   btnAddTask.innerHTML = '<i class="fas fa-plus"></i>';
   btnAddTask.classList.add('add');
-  p.appendChild(btnAddTask);
+  divRight.appendChild(btnAddTask);
 
   const btnEditTask = document.createElement('button');
   btnEditTask.innerHTML = '<i class="fas fa-edit"></i>';
-  p.appendChild(btnEditTask);
+  divRight.appendChild(btnEditTask);
 
   const btnRemoveTask = document.createElement('button');
   btnRemoveTask.innerHTML = '<i class="fas fa-trash-alt"></i>';
   btnRemoveTask.classList.add('remove');
-  p.appendChild(btnRemoveTask);
+  divRight.appendChild(btnRemoveTask);
 
   const input = document.createElement('input');
   input.style.display = 'none';
-  p.appendChild(input);
+  divRight.appendChild(input);
+
+  flexContainer.appendChild(divRight);
 
   li.addEventListener('click', manager.handleClick.bind(manager));
   li.addEventListener('keypress', manager.handleKeypress.bind(manager));
