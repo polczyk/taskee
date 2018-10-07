@@ -1,10 +1,6 @@
 import tasks from './tasks.js';
 import TaskManager from './taskmanager.js';
 
-let selectedTask = tasks[0].subTasks[0].subTasks[0];
-let selectedElement = null;
-let selectedIx = '';
-
 const ul = document.querySelector('ul');
 
 const input = document.querySelector('#taskInput');
