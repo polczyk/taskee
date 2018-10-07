@@ -17,6 +17,13 @@ body {
   width: 80%;
 }
 
+.task-item button {
+  border: none;
+  background: rgba(1, 1, 1, 0);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
 .collapsed {
   margin-bottom: 1rem;
 }

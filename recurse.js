@@ -60,21 +60,21 @@ function createTaskElement(task, parent, ix) {
   li.appendChild(p);
 
   const btnCollapse = document.createElement('button');
-  btnCollapse.innerText = 'Collapse';
+  btnCollapse.innerHTML = '<i class="fas fa-caret-up"></i>';
   btnCollapse.classList.add('collapse');
   p.appendChild(btnCollapse);
 
   const btnAddTask = document.createElement('button');
-  btnAddTask.innerText = 'Add Task';
+  btnAddTask.innerHTML = '<i class="fas fa-plus"></i>';
   btnAddTask.classList.add('add');
   p.appendChild(btnAddTask);
 
   const btnEditTask = document.createElement('button');
-  btnEditTask.innerText = 'Edit';
+  btnEditTask.innerHTML = '<i class="fas fa-edit"></i>';
   p.appendChild(btnEditTask);
 
   const btnRemoveTask = document.createElement('button');
-  btnRemoveTask.innerText = 'Remove';
+  btnRemoveTask.innerHTML = '<i class="fas fa-trash-alt"></i>';
   btnRemoveTask.classList.add('remove');
   p.appendChild(btnRemoveTask);
 

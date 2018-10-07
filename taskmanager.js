@@ -41,6 +41,14 @@ class TaskManager {
     if (event.target.nodeName === 'BUTTON') {
       if (event.target.classList.contains('collapse')) {
         this.toggleCollapse();
+
+        const icon = event.target.querySelector('i');
+        if (icon.classList.contains('fa-caret-up')) {
+          icon.classList.replace('fa-caret-up', 'fa-caret-down');
+        }
+        else if (icon.classList.contains('fa-caret-down')) {
+          icon.classList.replace('fa-caret-down', 'fa-caret-up');
+        }
       }
 
       if (event.target.classList.contains('remove')) {
