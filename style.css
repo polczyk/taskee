@@ -12,8 +12,10 @@ body {
 
 #taskInput {
   display: block;
+  font-size: 120%;
   margin: auto;
-  padding: 1em;
+  padding: 0.3em;
+  text-align: center;
   width: 80%;
 }
 
