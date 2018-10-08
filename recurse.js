@@ -52,6 +52,9 @@ function hasSubtasks(obj) {
 function createTaskElement(task, parent) {
   const li = document.createElement('li');
   li.classList.add('task-item');
+  if (isTopLevelTask(parent)) {
+    li.classList.add('top-level');
+  }
   const manager = new TaskManager(task, parent, li);
   
   const flexContainer = document.createElement('div');
@@ -100,6 +103,10 @@ function createButton(icon, title, classes) {
   });
 
   return button;
+}
+
+function isTopLevelTask(parent) {
+  return Array.isArray(parent);
 }
 
 export { createTaskElement };

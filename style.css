@@ -41,6 +41,10 @@ body {
   padding: 3% 0 3% 4%;
 }
 
+.top-level > ul {
+margin-bottom: 1.5rem;
+}
+
 .flex-right {
   flex: 0 0 auto;
 }
@@ -63,7 +67,7 @@ body {
 
 ul {
   list-style-type: none;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   padding-left: 0.75rem;
 }
 
