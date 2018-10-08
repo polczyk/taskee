@@ -27,8 +27,11 @@ body {
   border-left: 1px solid rgba(1, 1, 1, 0.3);
   border-right: 1px solid rgba(1, 1, 1, 0.3);
   border-top: 1px solid rgba(1, 1, 1, 0.3);
-  border-radius: 0 0 0 5px;
   box-shadow: 0 7px 5px -7px rgba(1, 1, 1, 0.1);
+}
+
+ul > li:nth-last-of-type(1) > div{
+  border-radius: 0 0 0 5px;
 }
 
 .task-item button {
