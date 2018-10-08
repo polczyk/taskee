@@ -1,4 +1,4 @@
-import { createTaskElement } from './recurse.js';
+import { createTaskElement } from './app.js';
 
 class TaskManager {
   constructor(task, parentTask, element) {
