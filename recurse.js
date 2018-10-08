@@ -80,15 +80,15 @@ function createTaskElement(task, parent) {
   const btnAddTask = createButton('fa-plus', 'Add new subtask', ['add']);
   divRight.appendChild(btnAddTask);
 
+  const input = document.createElement('input');
+  input.style.display = 'none';
+  divRight.appendChild(input);
+
   const btnEditTask = createButton('fa-edit', 'Edit this task', ['edit']);
   divRight.appendChild(btnEditTask);
 
   const btnRemovetask = createButton('fa-trash-alt', 'Remove this task', ['remove']);
   divRight.appendChild(btnRemovetask);
-
-  const input = document.createElement('input');
-  input.style.display = 'none';
-  divRight.appendChild(input);
 
   flexContainer.appendChild(divRight);
 
