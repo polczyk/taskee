@@ -5,6 +5,9 @@ class TaskManager {
     this.task = task;
     this.parentTask = parentTask;
     this.element = element;
+    
+    this.element.addEventListener('click', this.handleClick.bind(this));
+    this.element.addEventListener('keypress', this.handleKeypress.bind(this));
   }
 
   addSubtask() {
@@ -83,7 +86,9 @@ class TaskManager {
         this.element.appendChild(document.createElement('ul'));
       }
 
-      this.element.querySelector('ul').appendChild(createTaskElement(task, this.task, ''));
+      const taskElement = createTaskElement(task, this.task, '');
+      const manager = new TaskManager(task, this.task, taskElement);
+      this.element.querySelector('ul').appendChild(taskElement);
 
       inputElement.value = '';
       inputElement.style.display = 'none';

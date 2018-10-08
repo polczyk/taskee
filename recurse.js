@@ -9,6 +9,7 @@ input.addEventListener('keypress', e => {
     const task = {name: input.value};
     tasks.push(task);
     const el = createTaskElement(task, tasks, tasks.length + '.');
+    const manager = new TaskManager(task, tasks, el);
     ul.appendChild(el);
     el.scrollIntoView();
     return;
@@ -17,6 +18,8 @@ input.addEventListener('keypress', e => {
 
 tasks.forEach((e) => {
   const li = createTaskElement(e, tasks);
+  const manager = new TaskManager(e, tasks, li);
+
   if (hasSubtasks(e)) {
     li.appendChild(recurse(e));
   }
@@ -32,6 +35,8 @@ function recurse(obj) {
 
   obj.subTasks.forEach((task) => {
     const li = createTaskElement(task, obj);
+    const manager = new TaskManager(task, obj, li);
+
     if (hasSubtasks(task)) {
       li.appendChild(recurse(task));
     }
@@ -55,7 +60,6 @@ function createTaskElement(task, parent) {
   if (isTopLevelTask(parent)) {
     li.classList.add('top-level');
   }
-  const manager = new TaskManager(task, parent, li);
   
   const flexContainer = document.createElement('div');
   li.appendChild(flexContainer);
@@ -87,9 +91,6 @@ function createTaskElement(task, parent) {
   divRight.appendChild(input);
 
   flexContainer.appendChild(divRight);
-
-  li.addEventListener('click', manager.handleClick.bind(manager));
-  li.addEventListener('keypress', manager.handleKeypress.bind(manager));
 
   return li;
 }
