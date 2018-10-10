@@ -3,10 +3,11 @@ import * as taskmaker from './taskmaker.js';
 import {parse} from './taskparser.js';
 
 const ul = document.querySelector('ul');
+const input = document.querySelector('#taskInput');
+
 const storedTasks = localStorage.getItem('taskeeTasks');
 const tasks = JSON.parse(storedTasks);
 
-const input = document.querySelector('#taskInput');
 ul.appendChild(parse(tasks));
 
 input.addEventListener('keypress', e => {
@@ -26,4 +27,5 @@ input.addEventListener('keypress', e => {
 function saveToLocalStorage() {
   window.localStorage.setItem('taskeeTasks', JSON.stringify(tasks));
 }
+
 export { saveToLocalStorage };
