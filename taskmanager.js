@@ -1,4 +1,4 @@
-import { createTaskElement } from './app.js';
+import { createTaskElement, saveToLocalStorage } from './app.js';
 
 class TaskManager {
   constructor(task, parentTask, element) {
@@ -27,6 +27,8 @@ class TaskManager {
     taskArray.splice(index, 1);
 
     this.element.remove();
+
+    saveToLocalStorage();
   }
 
   removeSubtasks() {
@@ -95,6 +97,8 @@ class TaskManager {
 
       inputElement.value = '';
       inputElement.style.display = 'none';
+
+      saveToLocalStorage();
     }
   }
 }

@@ -1,7 +1,8 @@
-import tasks from './tasks.js';
 import TaskManager from './taskmanager.js';
 
 const ul = document.querySelector('ul');
+const storedTasks = localStorage.getItem('taskeeTasks');
+const tasks = JSON.parse(storedTasks);
 
 const input = document.querySelector('#taskInput');
 input.addEventListener('keypress', e => {
@@ -12,6 +13,8 @@ input.addEventListener('keypress', e => {
     const manager = new TaskManager(task, tasks, el);
     ul.appendChild(el);
     el.scrollIntoView();
+
+    saveToLocalStorage();
     return;
   }
 });
@@ -110,4 +113,8 @@ function isTopLevelTask(parent) {
   return Array.isArray(parent);
 }
 
-export { createTaskElement };
+function saveToLocalStorage() {
+  window.localStorage.setItem('taskeeTasks', JSON.stringify(tasks));
+}
+
+export { createTaskElement, saveToLocalStorage };
