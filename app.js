@@ -25,6 +25,9 @@ input.addEventListener('keypress', e => {
 });
 
 function saveTasksToLocalStorage() {
+  console.log('Saving tasks to local storage: ');
+  console.log(tasks);
+  
   window.localStorage.setItem('taskeeTasks', JSON.stringify(tasks));
 }
 
