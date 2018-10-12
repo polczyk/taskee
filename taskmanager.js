@@ -7,6 +7,8 @@ class TaskManager {
     this.parentTask = parentTask;
     this.element = element;
     
+    this.editing = false;
+
     this.element.addEventListener('click', this.handleClick.bind(this));
     this.element.addEventListener('keypress', this.handleKeypress.bind(this));
   }
@@ -14,6 +16,15 @@ class TaskManager {
   addSubtask() {
     console.log('Adding subtask');
     this.element.querySelector('input').style.display = 'initial';
+  }
+
+  editTask() {
+    console.log('Editing task');
+
+    const input = this.element.querySelector('input');
+    input.style.display = 'initial';
+    input.focus();
+    this.editing = true;
   }
 
   remove() {
@@ -70,6 +81,10 @@ class TaskManager {
         input.focus(); */
         this.addSubtask();
       }
+
+      if (event.target.classList.contains('edit')) {
+        this.editTask()
+      }
     }
   }
 
@@ -82,7 +97,16 @@ class TaskManager {
       if (inputElement.value.length === 0)
         return;
         
-      const task = {name: inputElement.value};
+      if (this.editing) {
+        this.task.name = inputElement.value;
+        this.element.querySelector('div').querySelector('p').textContent = this.task.name;
+        this.editing = false;
+      } 
+
+      else {
+        const task = {
+          name: inputElement.value
+        };
       if (!this.task.subTasks) this.task.subTasks = [];
 
       this.task.subTasks.push(task);
@@ -94,6 +118,7 @@ class TaskManager {
       const taskElement = createTaskElement(task, this.task, '');
       const manager = new TaskManager(task, this.task, taskElement);
       this.element.querySelector('ul').appendChild(taskElement);
+      }
 
       inputElement.value = '';
       inputElement.style.display = 'none';
