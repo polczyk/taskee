@@ -1,4 +1,4 @@
-import { saveToLocalStorage } from './app.js';
+import { saveTasksToLocalStorage } from './app.js';
 import { createTaskElement } from './taskmaker.js';
 
 class TaskManager {
@@ -28,8 +28,7 @@ class TaskManager {
     taskArray.splice(index, 1);
 
     this.element.remove();
-
-    saveToLocalStorage();
+    saveTasksToLocalStorage();
   }
 
   removeSubtasks() {
@@ -99,7 +98,7 @@ class TaskManager {
       inputElement.value = '';
       inputElement.style.display = 'none';
 
-      saveToLocalStorage();
+      saveTasksToLocalStorage();
     }
   }
 }

@@ -19,13 +19,13 @@ input.addEventListener('keypress', e => {
     ul.appendChild(el);
     el.scrollIntoView();
 
-    saveToLocalStorage();
+    saveTasksToLocalStorage();
     return;
   }
 });
 
-function saveToLocalStorage() {
+function saveTasksToLocalStorage() {
   window.localStorage.setItem('taskeeTasks', JSON.stringify(tasks));
 }
 
-export { saveToLocalStorage };
+export { saveTasksToLocalStorage };
