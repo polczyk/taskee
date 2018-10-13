@@ -3,10 +3,13 @@
 }
 
 body {
-  width: 50%;
-  margin: auto;
   font-size: 24px;
   font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+#container {
+  width: 80%;
+  margin: auto;
   padding: 3%;
 }
 
