@@ -11,19 +11,20 @@ class TaskManager {
 
     this.element.addEventListener('click', this.handleClick.bind(this));
     this.element.addEventListener('keypress', this.handleKeypress.bind(this));
+    this.element.addEventListener('focusout', this.handleFocusOut.bind(this));
   }
 
   addSubtask() {
     console.log('Adding subtask');
-    this.element.querySelector('input').style.display = 'initial';
+
+    this.showInputBox();
   }
 
   editTask() {
     console.log('Editing task');
 
-    const input = this.element.querySelector('input');
-    input.style.display = 'initial';
-    input.focus();
+    this.showInputBox();
+
     this.editing = true;
   }
 
@@ -60,6 +61,18 @@ class TaskManager {
     else if (icon.classList.contains('fa-caret-down')) {
       icon.classList.replace('fa-caret-down', 'fa-caret-up');
     }
+  }
+
+  showInputBox() {
+    const input = this.element.querySelector('input');
+    input.style.display = 'initial';
+    input.focus();
+  }
+
+  hideInputBox() {
+    const input = this.element.querySelector('input');
+    input.style.display = 'none';
+    input.value = '';
   }
 
   handleClick(event) {
