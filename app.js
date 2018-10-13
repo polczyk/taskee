@@ -5,10 +5,8 @@ import {parse} from './taskparser.js';
 const ul = document.querySelector('ul');
 const input = document.querySelector('#taskInput');
 
-const storedTasks = localStorage.getItem('taskeeTasks');
-const tasks = JSON.parse(storedTasks);
-
-ul.appendChild(parse(tasks));
+const tasks = loadTasksFromLocalStorage();
+prepareTaskList();
 
 input.addEventListener('keypress', handleKeyPress);
 
@@ -16,7 +14,7 @@ function addTask(name) {
   const task = {name: name};
   tasks.push(task);
   const element = taskmaker.createTaskElement(task, tasks);
-  new TaskManager(task, tasks, element);
+  const manager = new TaskManager(task, tasks, element);
   ul.appendChild(element);
   element.scrollIntoView();
 
@@ -27,6 +25,17 @@ function handleKeyPress(e) {
   if (e.code === 'Enter' && input.value.length > 0) {
     addTask(input.value);
   }
+}
+
+function loadTasksFromLocalStorage() {
+  const storedTasks = localStorage.getItem('taskeeTasks');
+  const tasks = JSON.parse(storedTasks);
+
+  return tasks;
+}
+
+function prepareTaskList(tasks) {
+  ul.appendChild(parse(tasks));
 }
 
 function saveTasksToLocalStorage() {
