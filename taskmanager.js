@@ -88,6 +88,14 @@ class TaskManager {
     }
   }
 
+  handleFocusOut(event) {
+    if (event.target.nodeName === 'INPUT') {
+      event.stopPropagation();
+
+      this.hideInputBox();
+    }
+  }
+
   handleKeypress(event) {
     event.stopPropagation();
     
