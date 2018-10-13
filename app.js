@@ -10,19 +10,24 @@ const tasks = JSON.parse(storedTasks);
 
 ul.appendChild(parse(tasks));
 
-input.addEventListener('keypress', e => {
-  if (e.code === 'Enter') {
-    const task = {name: input.value};
-    tasks.push(task);
-    const el = taskmaker.createTaskElement(task, tasks, tasks.length + '.');
-    const manager = new TaskManager(task, tasks, el);
-    ul.appendChild(el);
-    el.scrollIntoView();
+input.addEventListener('keypress', handleKeyPress);
 
-    saveTasksToLocalStorage();
-    return;
+function addTask(name) {
+  const task = {name: name};
+  tasks.push(task);
+  const element = taskmaker.createTaskElement(task, tasks);
+  new TaskManager(task, tasks, element);
+  ul.appendChild(element);
+  element.scrollIntoView();
+
+  saveTasksToLocalStorage();
+}
+
+function handleKeyPress(e) {
+  if (e.code === 'Enter' && input.value.length > 0) {
+    addTask(input.value);
   }
-});
+}
 
 function saveTasksToLocalStorage() {
   console.log('Saving tasks to local storage: ');
