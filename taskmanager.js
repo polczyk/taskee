@@ -1,5 +1,5 @@
 import { saveTasksToLocalStorage } from './app.js';
-import { createTaskElement } from './taskmaker.js';
+import { createTaskHtml } from './taskmaker.js';
 
 class TaskManager {
   constructor(task, parentTask, element) {
@@ -136,7 +136,7 @@ class TaskManager {
         this.element.appendChild(document.createElement('ul'));
       }
 
-      const taskElement = createTaskElement(task, this.task, '');
+      const taskElement = createTaskHtml(task, this.task, '');
       const manager = new TaskManager(task, this.task, taskElement);
       this.element.querySelector('ul').appendChild(taskElement);
       }

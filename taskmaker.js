@@ -3,7 +3,7 @@
 // @param task - Task object used to create the html element.
 // @param parent - Html element used to append new element.
 // @returns {HTMLElement} Element containing task info.
-function createTaskElement(task, parent) {
+function createTaskHtml(task, parent) {
   const li = document.createElement('li');
   li.classList.add('task-item');
   if (isTopLevelTask(parent)) {
@@ -59,4 +59,4 @@ function isTopLevelTask(parent) {
   return Array.isArray(parent);
 }
 
-export { createTaskElement };
+export { createTaskHtml };

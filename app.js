@@ -2,21 +2,21 @@ import TaskManager from './taskmanager.js';
 import * as taskmaker from './taskmaker.js';
 import {parse} from './taskparser.js';
 
-const ul = document.querySelector('ul');
+const taskList = document.querySelector('ul');
+
 const input = document.querySelector('#taskInput');
-
-const tasks = loadTasksFromLocalStorage();
-prepareTaskList(tasks);
-
 input.addEventListener('keypress', handleKeyPress);
 
-function addTask(name) {
-  const task = {name: name};
-  tasks.push(task);
-  const element = taskmaker.createTaskElement(task, tasks);
-  const manager = new TaskManager(task, tasks, element);
-  ul.appendChild(element);
-  element.scrollIntoView();
+const taskArray = loadTasksFromLocalStorage();
+prepareTaskList(taskArray);
+
+function addTask(taskName) {
+  const task = {name: taskName};
+  taskArray.push(task);
+  const htmlElement = taskmaker.createTaskHtml(task, taskArray);
+  const manager = new TaskManager(task, taskArray, htmlElement);
+  taskList.appendChild(htmlElement);
+  htmlElement.scrollIntoView();
 
   saveTasksToLocalStorage();
 }
@@ -35,14 +35,14 @@ function loadTasksFromLocalStorage() {
 }
 
 function prepareTaskList(tasks) {
-  ul.appendChild(parse(tasks));
+  taskList.appendChild(parse(tasks));
 }
 
 function saveTasksToLocalStorage() {
   console.log('Saving tasks to local storage: ');
-  console.log(tasks);
+  console.log(taskArray);
   
-  window.localStorage.setItem('taskeeTasks', JSON.stringify(tasks));
+  window.localStorage.setItem('taskeeTasks', JSON.stringify(taskArray));
 }
 
 export { saveTasksToLocalStorage };

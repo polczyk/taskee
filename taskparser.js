@@ -2,19 +2,19 @@ import TaskManager from './taskmanager.js';
 import * as taskmaker from './taskmaker.js';
 
 export function parse(tasks) {
-  const df = document.createDocumentFragment();
+  const documentFragment = document.createDocumentFragment();
 
   tasks.forEach((e) => {
-    const li = taskmaker.createTaskElement(e, tasks);
+    const li = taskmaker.createTaskHtml(e, tasks);
     const manager = new TaskManager(e, tasks, li);
   
     if (hasSubtasks(e)) {
       li.appendChild(recurse(e));
     }
-    df.appendChild(li);
+    documentFragment.appendChild(li);
   });
 
-  return df;
+  return documentFragment;
 }
 
 function recurse(obj) {
@@ -25,7 +25,7 @@ function recurse(obj) {
   const ul = document.createElement('ul');
 
   obj.subTasks.forEach((task) => {
-    const li = taskmaker.createTaskElement(task, obj);
+    const li = taskmaker.createTaskHtml(task, obj);
     const manager = new TaskManager(task, obj, li);
 
     if (hasSubtasks(task)) {
