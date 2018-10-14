@@ -26,6 +26,7 @@ class TaskManager {
     const taskElement = createTaskHtml(subTask, this.task);
     const manager = new TaskManager(subTask, this.task, taskElement);
     this.element.querySelector('ul').appendChild(taskElement);
+    saveTasksToLocalStorage();
   }
 
   startAddingSubtask() {
