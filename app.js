@@ -17,7 +17,7 @@ function addTask(taskName) {
   const manager = new TaskManager(task, taskArray, htmlElement);
   taskList.appendChild(htmlElement);
   htmlElement.scrollIntoView();
-
+  input.value = '';
   saveTasksToLocalStorage();
 }
 
