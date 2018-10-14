@@ -1,5 +1,6 @@
 import { saveTasksToLocalStorage } from './app.js';
 import { createTaskHtml } from './taskmaker.js';
+import EventHandler from './event-handler.js';
 
 class TaskManager {
   constructor(task, parentTask, element) {
@@ -9,18 +10,18 @@ class TaskManager {
     
     this.editing = false;
 
-    this.element.addEventListener('click', this.handleClick.bind(this));
     this.element.addEventListener('keypress', this.handleKeypress.bind(this));
+    this.element.addEventListener('click', e => EventHandler.handleClick(e, this));
     this.element.addEventListener('focusout', this.handleFocusOut.bind(this));
   }
 
-  addSubtask() {
+  startAddingSubtask() {
     console.log('Adding subtask');
 
     this.showInputBox();
   }
 
-  editTask() {
+  startEditing() {
     console.log('Editing task');
 
     this.showInputBox();
@@ -73,32 +74,6 @@ class TaskManager {
     const input = this.element.querySelector('input');
     input.style.display = 'none';
     input.value = '';
-  }
-
-  handleClick(event) {
-    event.stopPropagation();
-
-    if (event.target.nodeName === 'BUTTON') {
-      if (event.target.classList.contains('collapse')) {
-        this.toggleCollapse();
-      }
-
-      if (event.target.classList.contains('remove')) {
-        this.remove();
-      }
-
-      if (event.target.classList.contains('add')) {
-        /* selectedTask = task;
-        selectedElement = li;
-        selectedIx = ix;
-        input.focus(); */
-        this.addSubtask();
-      }
-
-      if (event.target.classList.contains('edit')) {
-        this.editTask()
-      }
-    }
   }
 
   handleFocusOut(event) {
