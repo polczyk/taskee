@@ -14,21 +14,33 @@ class TaskManager {
   }
 
   addSubtask(taskName) {
+    this.addSubtasksArray();
+    this.addListElement();
+
     const subTask = { name: taskName };
-    if (!this.task.subTasks) this.task.subTasks = [];
 
     this.task.subTasks.push(subTask);
+    this.addSubtaskToDOM(subTask);
+    
+    this.hideInputBox();
+    saveTasksToLocalStorage();
+  }
 
+  addSubtaskToDOM(task) {
+    const taskElement = createTaskHtml(task, this.task);
+    const manager = new TaskManager(task, this.task, taskElement);
+    this.element.querySelector('ul').appendChild(taskElement);
+  }
+
+  addSubtasksArray() {
+    if (!this.task.subTasks) 
+      this.task.subTasks = [];
+  }
+  
+  addListElement() {
     if (!this.element.querySelector('ul')) {
       this.element.appendChild(document.createElement('ul'));
     }
-
-    const taskElement = createTaskHtml(subTask, this.task);
-    const manager = new TaskManager(subTask, this.task, taskElement);
-    this.element.querySelector('ul').appendChild(taskElement);
-
-    this.hideInputBox();
-    saveTasksToLocalStorage();
   }
 
   startAddingSubtask() {
