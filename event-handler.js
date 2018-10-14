@@ -39,7 +39,14 @@ EventHandler.handleKeypress = (event, taskManager) => {
       taskManager.addSubtask(inputElement.value);
     }
   }
-  
+}
+
+EventHandler.handleFocusout = (event, taskManager) => {
+  if (event.target.nodeName === 'INPUT') {
+    event.stopPropagation();
+
+    taskManager.hideInputBox();
+  }
 }
 
 export default EventHandler;
