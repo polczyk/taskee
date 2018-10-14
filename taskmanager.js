@@ -10,9 +10,24 @@ class TaskManager {
     
     this.editing = false;
 
-    this.element.addEventListener('keypress', this.handleKeypress.bind(this));
     this.element.addEventListener('click', e => EventHandler.handleClick(e, this));
+    this.element.addEventListener('keypress', e => EventHandler.handleKeypress(e, this));
     this.element.addEventListener('focusout', this.handleFocusOut.bind(this));
+  }
+
+  addSubtask(taskName) {
+    const subTask = { name: taskName };
+    if (!this.task.subTasks) this.task.subTasks = [];
+
+    this.task.subTasks.push(subTask);
+
+    if (!this.element.querySelector('ul')) {
+      this.element.appendChild(document.createElement('ul'));
+    }
+
+    const taskElement = createTaskHtml(subTask, this.task);
+    const manager = new TaskManager(subTask, this.task, taskElement);
+    this.element.querySelector('ul').appendChild(taskElement);
   }
 
   startAddingSubtask() {
@@ -84,43 +99,16 @@ class TaskManager {
     }
   }
 
-  handleKeypress(event) {
-    event.stopPropagation();
-    
-    if (event.code === 'Enter') {
-      const inputElement = this.element.querySelector('input');
+  update(newName) {
+    console.log('Update')
+    this.task.name = newName;
+    this.element.querySelector('div')
+      .querySelector('p')
+      .textContent = this.task.name;
+    this.editing = false;
 
-      if (inputElement.value.length === 0)
-        return;
-        
-      if (this.editing) {
-        this.task.name = inputElement.value;
-        this.element.querySelector('div').querySelector('p').textContent = this.task.name;
-        this.editing = false;
-      } 
-
-      else {
-        const task = {
-          name: inputElement.value
-        };
-      if (!this.task.subTasks) this.task.subTasks = [];
-
-      this.task.subTasks.push(task);
-
-      if (!this.element.querySelector('ul')) {
-        this.element.appendChild(document.createElement('ul'));
-      }
-
-      const taskElement = createTaskHtml(task, this.task, '');
-      const manager = new TaskManager(task, this.task, taskElement);
-      this.element.querySelector('ul').appendChild(taskElement);
-      }
-
-      inputElement.value = '';
-      inputElement.style.display = 'none';
-
-      saveTasksToLocalStorage();
-    }
+    this.hideInputBox();
+    saveTasksToLocalStorage();
   }
 }
 

@@ -25,4 +25,21 @@ EventHandler.handleClick = (event, taskManager) => {
   }
 }
 
+EventHandler.handleKeypress = (event, taskManager) => {
+  event.stopPropagation();
+
+  const inputElement = taskManager.element.querySelector('input');
+
+  if (event.code === 'Enter') {
+    if ( inputElement.value.length === 0) return;
+
+    if (taskManager.editing) {
+      taskManager.update(inputElement.value);
+    } else {
+      taskManager.addSubtask(inputElement.value);
+    }
+  }
+  
+}
+
 export default EventHandler;
