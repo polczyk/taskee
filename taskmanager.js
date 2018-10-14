@@ -10,9 +10,7 @@ class TaskManager {
     
     this.editing = false;
 
-    this.element.addEventListener('click', e => EventHandler.handleClick(e, this));
-    this.element.addEventListener('keypress', e => EventHandler.handleKeypress(e, this));
-    this.element.addEventListener('focusout', e => EventHandler.handleFocusout(e, this));
+    this.registerEventHandlers();
   }
 
   addSubtask(taskName) {
@@ -42,6 +40,12 @@ class TaskManager {
     this.showInputBox();
 
     this.editing = true;
+  }
+
+  registerEventHandlers() {
+    this.element.addEventListener('click', e => EventHandler.handleClick(e, this));
+    this.element.addEventListener('keypress', e => EventHandler.handleKeypress(e, this));
+    this.element.addEventListener('focusout', e => EventHandler.handleFocusout(e, this));
   }
 
   remove() {
