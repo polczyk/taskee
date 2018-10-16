@@ -38,7 +38,7 @@ function addTask(taskName) {
 }
 
 function handleKeyPress(e) {
-  if (e.code === 'Enter' && input.value.length > 0) {
+  if (e.key === 'Enter' && input.value.length > 0) {
     addTask(input.value);
   }
 }

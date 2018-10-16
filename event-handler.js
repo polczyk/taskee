@@ -30,7 +30,7 @@ EventHandler.handleKeypress = (event, taskManager) => {
 
   const inputElement = taskManager.element.querySelector('input');
 
-  if (event.code === 'Enter') {
+  if (event.key === 'Enter') {
     if ( inputElement.value.length === 0) return;
 
     if (taskManager.editing) {
