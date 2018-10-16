@@ -18,17 +18,6 @@ function createTaskHtml(task, parentTask) {
   return taskElement;
 }
 
-function createButton(icon, title, classes) {
-  const button = document.createElement('button');
-  button.innerHTML = `<i class="fas ${icon}"></i>`;
-  button.setAttribute('title', title);
-  classes.forEach(cls => {
-    button.classList.add(cls);
-  });
-
-  return button;
-}
-
 function isTopLevelTask(parent) {
   return Array.isArray(parent);
 }
