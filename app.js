@@ -44,7 +44,7 @@ function handleKeyPress(e) {
 }
 
 function loadTasksFromLocalStorage() {
-  const storedTasks = localStorage.getItem('taskeeTasks');
+  const storedTasks = localStorage.getItem('taskeeTasks') || '[]';
   const tasks = JSON.parse(storedTasks);
 
   return tasks;
