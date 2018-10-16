@@ -1,8 +1,6 @@
 const EventHandler = {};
 
 EventHandler.handleClick = (event, taskManager) => {
-  console.log('EventHandler.handleClick():');
-  console.log(event, taskManager);
 
   event.stopPropagation();
 
