@@ -1,47 +1,21 @@
+import {taskItemTemplate} from './app.js';
+
 // Create the task manager and html element for a task.
 
 // @param task - Task object used to create the html element.
-// @param parent - Html element used to append new element.
+// @param parentTask - Parent task holding the new subtask.
 // @returns {HTMLElement} Element containing task info.
-function createTaskHtml(task, parent) {
-  const li = document.createElement('li');
-  li.classList.add('task-item');
-  if (isTopLevelTask(parent)) {
-    li.classList.add('top-level');
-  }
+function createTaskHtml(task, parentTask) {
+  const taskElement = document.importNode(taskItemTemplate, true);
+  taskElement.removeAttribute('id');
+  taskElement.removeAttribute('hidden');
   
-  const flexContainer = document.createElement('div');
-  li.appendChild(flexContainer);
+  if (isTopLevelTask(parentTask)) {
+    taskElement.classList.add('top-level');
+  }
 
-  const divLeft = document.createElement('div');
-  divLeft.classList.add('flex-left');
-  const p = document.createElement('p');
-  p.innerText = task.name;
-  divLeft.appendChild(p);
-  flexContainer.appendChild(divLeft);
-
-  const divRight = document.createElement('div');
-  divRight.classList.add('flex-right');
-
-  const btnCollapse = createButton('fa-caret-up', 'Hide subtasks', ['collapse']);
-  divRight.appendChild(btnCollapse);
-
-  const btnAddTask = createButton('fa-plus', 'Add new subtask', ['add']);
-  divRight.appendChild(btnAddTask);
-
-  const input = document.createElement('input');
-  input.style.display = 'none';
-  divRight.appendChild(input);
-
-  const btnEditTask = createButton('fa-edit', 'Edit this task', ['edit']);
-  divRight.appendChild(btnEditTask);
-
-  const btnRemovetask = createButton('fa-trash-alt', 'Remove this task', ['remove']);
-  divRight.appendChild(btnRemovetask);
-
-  flexContainer.appendChild(divRight);
-
-  return li;
+  taskElement.querySelector('p').textContent = task.name;
+  return taskElement;
 }
 
 function createButton(icon, title, classes) {

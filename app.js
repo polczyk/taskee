@@ -2,13 +2,29 @@ import TaskManager from './taskmanager.js';
 import * as taskmaker from './taskmaker.js';
 import {parse} from './taskparser.js';
 
+let taskItemTemplate = null;
+const taskArray = loadTasksFromLocalStorage();
 const taskList = document.querySelector('ul');
-
 const input = document.querySelector('#taskInput');
 input.addEventListener('keypress', handleKeyPress);
 
-const taskArray = loadTasksFromLocalStorage();
-prepareTaskList(taskArray);
+init();
+
+function init() {
+  fetch('./template.html')
+  .then(res => res.text())
+  .then(text => {
+    initializeTaskTemplate(text);
+    prepareTaskList(taskArray);
+  })
+  .catch(e => console.log(e));
+}
+
+function initializeTaskTemplate(text) {
+  const parser = new DOMParser();
+  const html = parser.parseFromString(text, 'text/html');
+  taskItemTemplate = html.querySelector('#task-item-template');
+}
 
 function addTask(taskName) {
   const task = {name: taskName};
@@ -45,4 +61,4 @@ function saveTasksToLocalStorage() {
   window.localStorage.setItem('taskeeTasks', JSON.stringify(taskArray));
 }
 
-export { saveTasksToLocalStorage };
+export { saveTasksToLocalStorage, taskItemTemplate };
