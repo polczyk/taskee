@@ -101,6 +101,10 @@ li {
   font-size: 85%;
 }
 
+button:focus {
+  outline: 0;
+}
+
 @media (max-width: 800px) {
   #container {
     width: 100%;
