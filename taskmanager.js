@@ -15,7 +15,6 @@ class TaskManager {
 
   addSubtask(taskName) {
     this.addSubtasksArray();
-    this.addListElement();
 
     const subTask = { name: taskName };
 
@@ -37,12 +36,6 @@ class TaskManager {
       this.task.subTasks = [];
   }
   
-  addListElement() {
-    if (!this.element.querySelector('ul')) {
-      this.element.appendChild(document.createElement('ul'));
-    }
-  }
-
   startAddingSubtask() {
     console.log('Adding subtask');
 
