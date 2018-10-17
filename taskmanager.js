@@ -89,7 +89,7 @@ class TaskManager {
   }
 
   toggleCollapseIcon() {
-    const icon = this.element.querySelector('.collapse').querySelector('i');
+    const icon = this.element.querySelector('.collapse');
     if (icon.classList.contains('fa-caret-up')) {
       icon.classList.replace('fa-caret-up', 'fa-caret-down');
     }
