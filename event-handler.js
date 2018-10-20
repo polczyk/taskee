@@ -29,12 +29,16 @@ EventHandler.handleKeypress = (event, taskManager) => {
   const inputElement = taskManager.element.querySelector('input');
 
   if (event.key === 'Enter') {
-    if ( inputElement.value.length === 0) return;
+    if ( event.target.value.length === 0) return;
 
-    if (taskManager.editing) {
-      taskManager.update(inputElement.value);
-    } else {
-      taskManager.addSubtask(inputElement.value);
+    if (event.target.classList.contains('task-item-stub-input')) {
+      taskManager.addSubtask(event.target.value);
+      taskManager.hideStub();
+      taskManager.clearStubInput();
+    }
+
+    if (event.target.classList.contains('task-edit')) {
+      taskManager.update(event.target.value);
     }
   }
 }
@@ -43,7 +47,10 @@ EventHandler.handleFocusout = (event, taskManager) => {
   if (event.target.nodeName === 'INPUT') {
     event.stopPropagation();
 
-    taskManager.hideInputBox();
+    if (event.target.classList.contains('task-item-stub-input')) {
+      taskManager.hideStub();
+      taskManager.clearStubInput();
+    }
   }
 }
 

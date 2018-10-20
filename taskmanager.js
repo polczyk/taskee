@@ -37,17 +37,12 @@ class TaskManager {
   }
   
   startAddingSubtask() {
-    console.log('Adding subtask');
-
-    this.showInputBox();
+    this.showStub();
   }
 
   startEditing() {
-    console.log('Editing task');
-
-    this.showInputBox();
-
-    this.editing = true;
+    this.showEditInput();
+    this.element.querySelector('p').classList.add('hidden');
   }
 
   registerEventHandlers() {
@@ -57,8 +52,6 @@ class TaskManager {
   }
 
   remove() {
-    console.log('Removing task');
-
     let index = null;
     let taskArray = null;
 
@@ -71,12 +64,7 @@ class TaskManager {
     saveTasksToLocalStorage();
   }
 
-  removeSubtasks() {
-    console.log('Remove subtasks dummy');
-  }
-
   toggleCollapse() {
-    console.log('Toggle collapse');
     this.element.classList.toggle('collapsed');
     this.toggleCollapseIcon();
   }
@@ -91,27 +79,43 @@ class TaskManager {
     }
   }
 
-  showInputBox() {
-    const input = this.element.querySelector('input');
-    input.style.display = 'initial';
-    input.focus();
+  showStub() {
+    this.element.querySelector('.task-item-stub')
+        .classList.remove('hidden');
+    this.element.querySelector('.task-item-stub')
+        .querySelector('input').focus();
   }
 
-  hideInputBox() {
-    const input = this.element.querySelector('input');
-    input.style.display = 'none';
-    input.value = '';
+  hideStub() {
+    this.element.querySelector('.task-item-stub')
+        .classList.add('hidden');
+  }
+
+  clearStubInput() {
+    this.element.querySelector('.task-item-stub')
+        .querySelector('input').value = '';
+  }
+
+  showEditInput() {
+    this.element.querySelector('.task-edit').classList.remove('hidden');
+    this.element.querySelector('.task-edit').value = this.task.name;
+    this.element.querySelector('.task-edit').focus();
+    this.element.querySelector('.task-edit').select();
+  }
+
+  hideEditInput() {
+    this.element.querySelector('.task-edit').classList.add('hidden');
+    this.element.querySelector('.task-edit').value = '';
   }
 
   update(newName) {
-    console.log('Update')
     this.task.name = newName;
     this.element.querySelector('div')
       .querySelector('p')
       .textContent = this.task.name;
-    this.editing = false;
 
-    this.hideInputBox();
+    this.hideEditInput();
+    this.element.querySelector('p').classList.remove('hidden');
     saveTasksToLocalStorage();
   }
 }
