@@ -39,7 +39,7 @@ class TaskManager {
   startAddingSubtask() {
     console.log('Adding subtask');
 
-    this.showInputBox();
+    this.showStub();
   }
 
   startEditing() {
@@ -89,6 +89,23 @@ class TaskManager {
     else if (icon.classList.contains('fa-caret-down')) {
       icon.classList.replace('fa-caret-down', 'fa-caret-up');
     }
+  }
+
+  showStub() {
+    this.element.querySelector('.task-item-stub')
+        .classList.remove('hidden');
+    this.element.querySelector('.task-item-stub')
+        .querySelector('input').focus();
+  }
+
+  hideStub() {
+    this.element.querySelector('.task-item-stub')
+        .classList.add('hidden');
+  }
+
+  clearStubInput() {
+    this.element.querySelector('.task-item-stub')
+        .querySelector('input').value = '';
   }
 
   showInputBox() {

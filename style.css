@@ -67,6 +67,19 @@ ul > li:nth-last-of-type(1) > div{
   padding: 3% 0 3% 4%;
 }
 
+.task-item-stub {
+  margin-top: -5px;
+  width: 40%;
+  padding: 3%;
+  margin-left: auto;
+}
+
+.task-item-stub input {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+
+}
 .top-level{
   margin-bottom: 0.8rem;
 }
@@ -92,6 +105,10 @@ ul > li:nth-last-of-type(1) > div{
   margin-bottom: 1rem;
 }
 
+.hidden {
+  display: none !important;
+}
+
 ul {
   list-style-type: none;
   padding-left: 7%;
@@ -108,6 +125,12 @@ button:focus {
 @media (max-width: 800px) {
   #container {
     width: 100%;
+  }
+
+  .task-item-stub {
+    width: 90%;
+    margin: auto;
+    margin-top: -5px;
   }
 
   #taskInput {
