@@ -64,10 +64,6 @@ class TaskManager {
     saveTasksToLocalStorage();
   }
 
-  removeSubtasks() {
-    console.log('Remove subtasks dummy');
-  }
-
   toggleCollapse() {
     this.element.classList.toggle('collapsed');
     this.toggleCollapseIcon();
