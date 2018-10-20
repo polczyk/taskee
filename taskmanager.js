@@ -37,14 +37,10 @@ class TaskManager {
   }
   
   startAddingSubtask() {
-    console.log('Adding subtask');
-
     this.showStub();
   }
 
   startEditing() {
-    console.log('Editing task');
-
     this.showEditInput();
     this.element.querySelector('p').classList.add('hidden');
   }
@@ -56,8 +52,6 @@ class TaskManager {
   }
 
   remove() {
-    console.log('Removing task');
-
     let index = null;
     let taskArray = null;
 
@@ -75,7 +69,6 @@ class TaskManager {
   }
 
   toggleCollapse() {
-    console.log('Toggle collapse');
     this.element.classList.toggle('collapsed');
     this.toggleCollapseIcon();
   }
@@ -120,7 +113,6 @@ class TaskManager {
   }
 
   update(newName) {
-    console.log('Update')
     this.task.name = newName;
     this.element.querySelector('div')
       .querySelector('p')
