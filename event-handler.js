@@ -37,9 +37,9 @@ EventHandler.handleKeypress = (event, taskManager) => {
       taskManager.clearStubInput();
     }
 
-    if (taskManager.editing) {
-      taskManager.update(inputElement.value);
-    } 
+    if (event.target.classList.contains('task-edit')) {
+      taskManager.update(event.target.value);
+    }
   }
 }
 

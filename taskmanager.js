@@ -45,9 +45,8 @@ class TaskManager {
   startEditing() {
     console.log('Editing task');
 
-    this.showInputBox();
-
-    this.editing = true;
+    this.showEditInput();
+    this.element.querySelector('p').classList.add('hidden');
   }
 
   registerEventHandlers() {
@@ -108,16 +107,16 @@ class TaskManager {
         .querySelector('input').value = '';
   }
 
-  showInputBox() {
-    const input = this.element.querySelector('input');
-    input.style.display = 'initial';
-    input.focus();
+  showEditInput() {
+    this.element.querySelector('.task-edit').classList.remove('hidden');
+    this.element.querySelector('.task-edit').value = this.task.name;
+    this.element.querySelector('.task-edit').focus();
+    this.element.querySelector('.task-edit').select();
   }
 
-  hideInputBox() {
-    const input = this.element.querySelector('input');
-    input.style.display = 'none';
-    input.value = '';
+  hideEditInput() {
+    this.element.querySelector('.task-edit').classList.add('hidden');
+    this.element.querySelector('.task-edit').value = '';
   }
 
   update(newName) {
@@ -126,9 +125,9 @@ class TaskManager {
     this.element.querySelector('div')
       .querySelector('p')
       .textContent = this.task.name;
-    this.editing = false;
 
-    this.hideInputBox();
+    this.hideEditInput();
+    this.element.querySelector('p').classList.remove('hidden');
     saveTasksToLocalStorage();
   }
 }
